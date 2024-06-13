@@ -1,0 +1,12 @@
+<div class="canvas">
+	@for (type of selectedTypes$ | async; track $index) {
+		<app-type-box
+			[type]="type"
+			[typeCount]="type.count"
+			cdkDragBoundary=".canvas"
+			cdkDrag
+			id="box-{{ type.boxId }}"
+			(cdkDragMoved)="updateLinesPosition()"
+		/>
+	}
+</div>
