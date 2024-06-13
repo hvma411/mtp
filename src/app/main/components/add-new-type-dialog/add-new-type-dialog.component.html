@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Add new type</h2>
+<mat-dialog-content>
+	<form [formGroup]="typeFormGroup">
+		<mat-form-field appearance="fill">
+			<mat-label>Type name</mat-label>
+			<input matInput formControlName="typeName">
+		</mat-form-field>
+		<div formArrayName="inputs">
+			@for (input of inputControls.controls; track $index) {
+				<div class="custom-input-container" [formGroupName]="$index">
+					<mat-form-field appearance="fill">
+						<mat-label>Placeholder {{$index + 1}}</mat-label>
+						<input matInput formControlName="placeholder">
+					</mat-form-field>
+					<button class="remove-input-btn" mat-icon-button color="warn" type="button" (click)="removeInput($index)">
+						<mat-icon>delete</mat-icon>
+					</button>
+				</div>
+			}
+		</div>
+    	<button mat-flat-button color="primary" (click)="addInput()">Add input</button>
+  	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button (click)="onCancel()">Cancel</button>
+	<button mat-button (click)="onSubmit()" [disabled]="!typeFormGroup.valid">Add</button>
+</mat-dialog-actions>

@@ -1,0 +1,55 @@
+.type-box {
+	position: relative;
+
+	mat-card-title {
+		padding: 8px 12px;
+		margin-bottom: 5px;
+	}
+
+	mat-form-field {
+		width: 100%;
+	}
+}
+
+.type-box.white {
+	color: white;
+
+	mat-card-content,
+	mat-form-field,
+	.delete-type-box-btn {
+		color: white;
+	}
+}
+
+.type-box.black {
+	color: black;
+
+	mat-card-content,
+	mat-form-field,
+	.delete-type-box-btn {
+		color: black;
+	}
+}
+
+.connect-box-btn {
+	position: absolute;
+	bottom: -35px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: 28px;
+	height: 28px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	mat-icon {
+		transform: scale(.9);
+	}
+}
+
+.connecting-disabled {
+	opacity: .6;
+	pointer-events: none;
+}

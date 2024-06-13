@@ -1,0 +1,37 @@
+<mat-card class="type-box"
+	[ngStyle]="{ 'background-color': type.color }"
+	[ngClass]="{
+		'white': textColor === 'white',
+		'black': textColor === 'black',
+		'connecting-disabled': activeConnectionBoxTypeCount === typeCount &&
+			connectingTypesBoxesInProgress &&
+			type.boxId !== activeConnectionBoxId
+	}"
+>
+	<mat-card-title>Type {{ typeCount }}</mat-card-title>
+	<mat-card-content>
+		<form [formGroup]="typeFormGroup">
+			<mat-form-field appearance="fill">
+				<mat-label>Name</mat-label>
+				<input matInput formControlName="name">
+			</mat-form-field>
+			<div formArrayName="inputs">
+				@for (control of inputControls.controls; track $index) {
+					<mat-form-field appearance="fill">
+						<mat-label>{{ type.inputs[$index].placeholder }}</mat-label>
+						<input matInput [formControlName]="$index">
+					</mat-form-field>
+				}
+			</div>
+		  </form>
+	</mat-card-content>
+	@if (connectingTypesBoxesInProgress && type.boxId === activeConnectionBoxId) {
+		<button mat-mini-fab class="connect-box-btn" (click)="onCancelConnectClick()">
+			<mat-icon>close</mat-icon>
+		</button>
+	} @else {
+		<button mat-mini-fab class="connect-box-btn" (click)="onConnectClick(type.boxId, type.count!)">
+			<mat-icon>arrow_drop_down</mat-icon>
+		</button>
+	}
+</mat-card>
